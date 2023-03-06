@@ -50,7 +50,7 @@ while True:
 
 
 
-            # its never actually making it here because its not catching losses,
+            # it's never actually making it here because its not catching losses,
             # instead is just getting stuck in an infinite loop
 
 
