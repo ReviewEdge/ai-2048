@@ -17,9 +17,9 @@ min = 9999999999
 progress = 1
 for i in range(200000):
     if progress % 100 == 0:
-        print(f"\nGames: {progress}")
+        print(f"\nGames Played: {progress}")
         print(logic.mat_to_string(max_board))
-        print(f"Max: {max}\tMin: {min}")
+        print(f"High Score: {max}\nMin: {min}")
 
     blockPrint()
     result = game_2048.main()
