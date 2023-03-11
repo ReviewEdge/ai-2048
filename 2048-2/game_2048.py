@@ -1,10 +1,31 @@
 import logic
 import random
+import expectimax as em
+import puzzle_world as pw
+
+def move_to_str(move):
+    if move == pw.Move.UP:
+        return "w"
+    if move == pw.Move.DOWN:
+        return "s"
+    if move == pw.Move.LEFT:
+        return "a"
+    if move == pw.Move.RIGHT:
+        return "d"
+    
 
 
 def main():
     # call start_game function to initialize the matrix
     mat = logic.start_game()
+
+
+#     try_this_board = [[0, 4, 0, 0],
+# [2, 16, 4, 0],
+# [32, 4, 0, 0],
+# [4, 16, 8, 2]]
+    
+#     mat = try_this_board
 
     # game loop
     move_count = 0
@@ -23,16 +44,19 @@ def main():
 
         else:
 
+            # RANDOM AI:
+            # x = valid_moves[random.randint(0, len(valid_moves)-1)]
+
+
+
+            # expectimax AI:
+            # em.suggest_next_move(mat)
+
             # get user input for next move
             # x = input("Move: ").lower()
 
-
-
-
-
-            # RANDOM AI:
-            x = valid_moves[random.randint(0, len(valid_moves)-1)]
-
+            x = move_to_str(em.get_next_move(mat, 3))
+            print(f"MOVE PICKED: {x}")
 
 
 
