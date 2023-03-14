@@ -1,3 +1,6 @@
+# 2048 game
+# Contains the game loop, allows player to make moves and play game
+
 import logic
 import random
 import expectimax as em
@@ -47,14 +50,13 @@ def main():
             # RANDOM AI:
             # x = valid_moves[random.randint(0, len(valid_moves)-1)]
 
-
-
-            # expectimax AI:
+            # expectimax AI, prompts which move you should make, dl=3
             # em.suggest_next_move(mat)
 
             # get user input for next move
             # x = input("Move: ").lower()
 
+            # Auto playing varying depth expectimax AI:
             x = move_to_str(em.get_next_move_vary_depth(mat, 2))
             print(f"MOVE PICKED: {x}")
 

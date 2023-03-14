@@ -11,7 +11,7 @@ class Move(Enum):
 
 moves = [Move.UP, Move.DOWN, Move.LEFT, Move.RIGHT]
 
-            
+# represents a board state (doesn't know wether it's my move or the game's move)            
 class PuzzleWorld:
 
     def __init__(self, board, score, heur_score: int):
@@ -56,7 +56,9 @@ class PuzzleWorld:
         return logic.mat_to_string(self.board)
 
 
-
+# represents a game state
+# knows if it's my move or the game's move
+# method for generating all possible child-states
 class Node:
     
     def __init__(self, puzzle: PuzzleWorld, heur_score, is_my_move):
@@ -73,7 +75,9 @@ class Node:
         self.children = []
         self.is_my_move = is_my_move
 
-
+    # sets children to the possible children the current board could result in
+    # if it's my move, it simulates the possible moves you could make
+    # if it's the game's move, it simulates all the places 2 and 4 tiles could spawn in
     def spawn_children(self):
         if self.is_my_move:
             for m in moves:
@@ -89,8 +93,6 @@ class Node:
 
         # simulate random tile possibilities, and calculate my averaged heur_score based on the possible children
         else:
-            
-
 
             #NOT SURE IF THIS IS RIGHT
             if not self.puzzle:

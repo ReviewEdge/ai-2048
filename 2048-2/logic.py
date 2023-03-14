@@ -1,18 +1,12 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 # logic.py to be
 # imported in the 2048.py file
 
-# importing random package
-# for methods to generate random
-# numbers.
 
 import random
 
 
-# function to initialize game / grid
-# at the start
-
+# initialize new game (setup board)
 def start_game():
 
     # makes empty matrix

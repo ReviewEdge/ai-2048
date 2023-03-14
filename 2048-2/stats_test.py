@@ -1,3 +1,6 @@
+# Plays a lot of random 2048 games, saves best game
+
+
 import game_2048
 import sys, os
 import logic

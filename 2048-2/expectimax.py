@@ -1,16 +1,16 @@
+# An implementation of expectimax to solve 2048
+
 import puzzle_world as pw
 import sys, os
 
 
-
-# Disable
+# Disables print statements
 def blockPrint():
     sys.stdout = open(os.devnull, 'w')
 
-# Restore
+# Restores print statements
 def enablePrint():
     sys.stdout = sys.__stdout__
-
 
 
 def expectimax(node: pw.Node, curr_depth, depth_limit):
@@ -64,6 +64,7 @@ def expectimax(node: pw.Node, curr_depth, depth_limit):
 # print(expectimax(start_node, 0, 3))
 
 
+# suggests next move based on current board, at a set depth
 def suggest_next_move(curr_board):
     start = pw.PuzzleWorld(None, None, None)
     blockPrint()
@@ -77,6 +78,8 @@ def suggest_next_move(curr_board):
         print(f"{m}: {expectimax(pw.Node(start_node.puzzle.move(m), 0, False), 0 , 3)}")
 
 
+
+# returns the best next move based on inputted board, at a set depth of exploration
 def get_next_move(curr_board, dl):
     curr_puzzle = pw.PuzzleWorld(curr_board, 0, 0)
     # curr_puzzle.set_heur_score()
@@ -92,6 +95,7 @@ def get_next_move(curr_board, dl):
 
 
 
+# counts how many non-empty tiles in a board
 def get_num_tiles(board):
     all = 0
     for r in range(0, len(board)):
@@ -102,7 +106,8 @@ def get_num_tiles(board):
     
 
 
-
+# gets next move, but goes deeper if there are more tiles 
+# (because they are less possibilities , e.g. a smaller branching factor)
 def get_next_move_vary_depth(curr_board, dl):
     use_dl = dl
 
@@ -116,8 +121,6 @@ def get_next_move_vary_depth(curr_board, dl):
         use_dl = 5
 
     print(f"Tiles: {amt}\tDepth: {use_dl}")
-
-
 
     curr_puzzle = pw.PuzzleWorld(curr_board, 0, 0)
     # curr_puzzle.set_heur_score()
