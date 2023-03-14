@@ -1,6 +1,22 @@
 import puzzle_world as pw
 
 
+
+
+
+
+
+
+# DON'T USE THIS CODE
+
+
+
+
+
+
+
+
+
 start = pw.PuzzleWorld(None, None, None, None)
 start.start_game()
 moves = [pw.Move.UP, pw.Move.DOWN, pw.Move.LEFT, pw.Move.RIGHT]

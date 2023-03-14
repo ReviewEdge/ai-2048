@@ -73,8 +73,6 @@ class Node:
         self.children = []
         self.is_my_move = is_my_move
 
-        
-        
 
     def spawn_children(self):
         if self.is_my_move:
@@ -101,8 +99,6 @@ class Node:
 
                 return False 
             
-
-
 
             # check every cell in the board
             for r in range(0, len(self.puzzle.board)):
