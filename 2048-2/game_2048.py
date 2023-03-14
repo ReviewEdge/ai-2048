@@ -55,7 +55,7 @@ def main():
             # get user input for next move
             # x = input("Move: ").lower()
 
-            x = move_to_str(em.get_next_move(mat, 3))
+            x = move_to_str(em.get_next_move_vary_depth(mat, 2))
             print(f"MOVE PICKED: {x}")
 
 

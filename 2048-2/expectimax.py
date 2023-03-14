@@ -89,3 +89,44 @@ def get_next_move(curr_board, dl):
             best_m = (m, try_m_score)
 
     return best_m[0]
+
+
+
+def get_num_tiles(board):
+    all = 0
+    for r in range(0, len(board)):
+        for c in range(0, len(board)):
+            if board[r][c] != 0:
+                all+=1
+    return all
+    
+
+
+
+def get_next_move_vary_depth(curr_board, dl):
+    use_dl = dl
+
+    amt = get_num_tiles(curr_board)
+
+    # if 9 < amt < 11:
+    #     use_dl = 4
+    if 11 < amt < 14:
+        use_dl = 4
+    elif 14 < amt:
+        use_dl = 5
+
+    print(f"Tiles: {amt}\tDepth: {use_dl}")
+
+
+
+    curr_puzzle = pw.PuzzleWorld(curr_board, 0, 0)
+    # curr_puzzle.set_heur_score()
+    curr_node = pw.Node(curr_puzzle, 0, True)
+
+    best_m = (pw.Move.UP, -1)
+    for m in pw.moves:
+        try_m_score = expectimax(pw.Node(curr_node.puzzle.move(m), 0, False), 0 , use_dl)
+        if try_m_score > best_m[1]:
+            best_m = (m, try_m_score)
+
+    return best_m[0]
