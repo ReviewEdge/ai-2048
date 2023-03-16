@@ -67,4 +67,4 @@ def get_next_move(curr_board, score, last_tile):
 
     node = pn.PuzzleNode([row[:] for row in curr_board], score, last_move)
 
-    return expectimax(node, 0, 2)[0]
+    return expectimax(node, 0, 3)[0]
