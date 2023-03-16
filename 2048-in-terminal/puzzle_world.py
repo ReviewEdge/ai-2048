@@ -44,11 +44,21 @@ class PuzzleWorld:
         self.score = 0
         self.heuristic_score = self.set_heur_score()
 
+    # counts how many non-empty tiles in a board
+    def get_num_tiles(self):
+        all = 0
+        for r in range(0, len(self.board)):
+            for c in range(0, len(self.board)):
+                if self.board[r][c] != 0:
+                    all+=1
+        return all
+
 
     #TODO: IMPLEMENT THIS
     def set_heur_score(self):
         #make this actually do something helpful:
-        self.heur_score = self.score
+        self.heur_score = self.score / self.get_num_tiles()
+
         return self.heur_score
     
 
@@ -98,10 +108,8 @@ class Node:
             if not self.puzzle:
 
                 # print(f"throwing false: {self}\n{self.puzzle.board}")
-
                 return False 
-            
-
+        
             # check every cell in the board
             for r in range(0, len(self.puzzle.board)):
                 for c in range(0, len(self.puzzle.board)):

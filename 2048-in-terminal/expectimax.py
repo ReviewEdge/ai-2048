@@ -85,7 +85,7 @@ def get_next_move(curr_board, dl):
     # curr_puzzle.set_heur_score()
     curr_node = pw.Node(curr_puzzle, 0, True)
 
-    best_m = (pw.Move.UP, -1)
+    best_m = (pw.Move.LEFT, -1)
     for m in pw.moves:
         try_m_score = expectimax(pw.Node(curr_node.puzzle.move(m), 0, False), 0 , dl)
         if try_m_score > best_m[1]:
@@ -115,14 +115,19 @@ def get_next_move_vary_depth(curr_board, dl):
 
     # if 9 < amt < 11:
     #     use_dl = 4
-    if 11 < amt < 14:
-        use_dl = 4
+    if 12 < amt < 14:
+        use_dl = dl+1
     elif 14 < amt:
-        use_dl = 5
+        use_dl = dl+2
 
     print(f"Tiles: {amt}\tDepth: {use_dl}")
 
     curr_puzzle = pw.PuzzleWorld(curr_board, 0, 0)
+
+    
+    # print(f"Tiles: {amt}\tDepth: {use_dl}\tH-score: {curr_puzzle.set_heur_score()}")
+
+
     # curr_puzzle.set_heur_score()
     curr_node = pw.Node(curr_puzzle, 0, True)
 

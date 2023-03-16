@@ -38,9 +38,10 @@ def add_new_tile(mat):
         if mat[r][c] == 0:
             if random.randint(0,9) == 9:
                 mat[r][c] = 4
+                return 4
             else:
                 mat[r][c] = 2
-            break
+                return 2
 
 
 def get_valid_moves(mat):
@@ -104,7 +105,7 @@ def compress(mat):
 
 # function to merge the cells in matrix after compressing
 def merge(mat):
-
+    # doesn't need to clone mat, because it's always being run on a fresh clone of a board
     changed = False
     score_increase = 0
     for i in range(4):
@@ -153,7 +154,7 @@ def transpose(mat):
 
 
 # update the matrix if we move left
-def move_left(grid):
+def move_left(grid, curr_score):
 
     # first compress the grid
     (new_grid, changed1) = compress(grid)
@@ -172,12 +173,12 @@ def move_left(grid):
     # or different
 
     # return (new_grid, changed, score_increse)
-    return (new_grid, changed, si)
+    return (new_grid, changed, curr_score+si)
 
 
 # function to update the matrix
 # if we move / swipe right
-def move_right(grid):
+def move_right(grid, curr_scor):
 
     # to move right we just reverse
     # the matrix
@@ -186,18 +187,18 @@ def move_right(grid):
 
     # then move left
 
-    (new_grid, changed, si) = move_left(new_grid)
+    (new_grid, changed, score) = move_left(new_grid, curr_scor)
 
     # then again reverse matrix will
     # give us desired result
 
     new_grid = reverse(new_grid)
-    return (new_grid, changed, si)
+    return (new_grid, changed, score)
 
 
 # function to update the matrix
 # if we move / swipe up
-def move_up(grid):
+def move_up(grid, curr_scor):
 
     # to move up we just take
     # transpose of matrix
@@ -207,18 +208,18 @@ def move_up(grid):
     # then move left (calling all
     # included functions) then
 
-    (new_grid, changed, si) = move_left(new_grid)
+    (new_grid, changed, score) = move_left(new_grid, curr_scor)
 
     # again take transpose will give
     # desired results
 
     new_grid = transpose(new_grid)
-    return (new_grid, changed, si)
+    return (new_grid, changed, score)
 
 
 # function to update the matrix
 # if we move / swipe down
-def move_down(grid):
+def move_down(grid, curr_scor):
 
     # to move down we take transpose
 
@@ -226,13 +227,13 @@ def move_down(grid):
 
     # move right and then again
 
-    (new_grid, changed, si) = move_right(new_grid)
+    (new_grid, changed, score) = move_right(new_grid, curr_scor)
 
     # take transpose will give desired
     # results.
 
     new_grid = transpose(new_grid)
-    return (new_grid, changed, si)
+    return (new_grid, changed, score)
 
 
 def mat_to_string(mat):

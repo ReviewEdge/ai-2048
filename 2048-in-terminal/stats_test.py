@@ -18,7 +18,7 @@ max = 0
 max_board = []
 min = 9999999999
 progress = 1
-for i in range(200000):
+for i in range(5000):
     if progress % 100 == 0:
         print(f"\nGames Played: {progress}")
         print(logic.mat_to_string(max_board))
