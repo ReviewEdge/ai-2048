@@ -38,7 +38,7 @@ for i in range(5000):
 
     # if progress % 100 == 0:
     print(f"\nGames Played: {progress}")
-    print(logic.mat_to_string(max_board))
+    print(max_board)
     print(f"High Score: {max}\nMin: {min}")
 
 print(f"\nMax: {max}\tMin: {min}")
