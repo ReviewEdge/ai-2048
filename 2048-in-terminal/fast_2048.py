@@ -26,7 +26,7 @@ def main():
 
     # game loop
     while True:
-        print(f"\nMove Count: {move_count}\tScore: {score}\n{logic.mat_to_string(mat)}") # delete me
+        print(f"\nMove Count: {move_count}\tScore: {score}\n{logic.mat_to_string(mat)}")
 
         # AI
         x = move_to_str(em2.get_next_move(mat, score, last_tile))
@@ -34,9 +34,9 @@ def main():
         print(f"Move picked: {x}")
 
         if not x:
-            print("g o")
-            print(mat)
-            break
+            print("GAME OVER!")
+            print(f"\n\n\nMove Count: {move_count}\tScore: {score}\n{logic.mat_to_string(mat)}")
+            return score, False, mat
 
         # move up
         if x == "w":

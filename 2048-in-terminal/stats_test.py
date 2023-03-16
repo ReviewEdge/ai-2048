@@ -4,6 +4,7 @@
 import game_2048
 import sys, os
 import logic
+import fast_2048
 
 # Disable
 def blockPrint():
@@ -19,13 +20,8 @@ max_board = []
 min = 9999999999
 progress = 1
 for i in range(5000):
-    if progress % 100 == 0:
-        print(f"\nGames Played: {progress}")
-        print(logic.mat_to_string(max_board))
-        print(f"High Score: {max}\nMin: {min}")
-
     blockPrint()
-    result = game_2048.main()
+    result = fast_2048.main()
     enablePrint()
 
     if result[1]:
@@ -39,5 +35,10 @@ for i in range(5000):
         min = result[0]
     
     progress+=1
+
+    # if progress % 100 == 0:
+    print(f"\nGames Played: {progress}")
+    print(logic.mat_to_string(max_board))
+    print(f"High Score: {max}\nMin: {min}")
 
 print(f"\nMax: {max}\tMin: {min}")
