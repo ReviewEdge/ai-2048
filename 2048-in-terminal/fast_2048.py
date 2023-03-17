@@ -19,7 +19,7 @@ def move_to_str(move):
 
 def main():
     mat = logic.start_game()
-    move_count = 1
+    move_count = 0
     score = 1
     last_tile = 2
     flag = True
@@ -29,7 +29,7 @@ def main():
         print(f"\nMove Count: {move_count}\tScore: {score}\n{logic.mat_to_string(mat)}")
 
         # AI
-        x = move_to_str(em2.get_next_move(mat, score, last_tile))
+        x = move_to_str(em2.get_next_move_vary_depth(mat, score, last_tile))
 
         print(f"Move picked: {x}")
 

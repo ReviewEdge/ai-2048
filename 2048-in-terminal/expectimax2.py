@@ -68,3 +68,27 @@ def get_next_move(curr_board, score, last_tile):
     node = pn.PuzzleNode([row[:] for row in curr_board], score, last_move)
 
     return expectimax(node, 0, 3)[0]
+
+
+
+def get_next_move_vary_depth(curr_board, score, last_tile):
+    dl = 2
+    
+    if last_tile == 2:
+        last_move = pn.Move.TWO
+    if last_tile == 4:
+        last_move = pn.Move.FOUR
+
+    node = pn.PuzzleNode([row[:] for row in curr_board], score, last_move)
+
+    amt_empty = node.get_num_empty_tiles()
+    if amt_empty <= 4:
+        dl+=1
+    if amt_empty <= 2:
+        dl += 1
+
+    print(f"Search Depth: {dl}")
+
+    return expectimax(node, 0, dl)[0]
+
+
