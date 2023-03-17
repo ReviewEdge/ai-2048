@@ -20,9 +20,9 @@ max_board = []
 min = 9999999999
 progress = 0
 for i in range(5000):
-    blockPrint()
+    # blockPrint()
     result = fast_2048.main()
-    enablePrint()
+    # enablePrint()
 
     if result[1]:
         print(f"Won in {result[0]} moves.")
