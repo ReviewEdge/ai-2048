@@ -17,14 +17,21 @@ def move_to_str(move):
 
 
 def main():
+    print("---2048---")
+    print('Commands: ')
+    print("'W' or 'w' : Move Up")
+    print("'S' or 's' : Move Down")
+    print("'A' or 'a' : Move Left")
+    print("'D' or 'd' : Move Right\n")
+
     # call start_game function to initialize the matrix
     mat = logic.start_game()
 
     # game loop
-    move_count = 0
+    move_count = 1
     score = 0
     while True:
-        print(f"\nMOVE #{move_count}\tSCORE: {score}")
+        print(f"MOVE #{move_count}\tSCORE: {score}")
         valid_moves = logic.get_valid_moves(mat)
         
         if valid_moves == "WIN":
@@ -67,7 +74,7 @@ def main():
 
 
         # print the matrix after each move
-        print(logic.mat_to_string(mat))
+        print("\n" + logic.mat_to_string(mat))
 
 
 # Driver code

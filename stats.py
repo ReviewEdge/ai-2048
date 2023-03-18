@@ -3,7 +3,7 @@
 
 import sys, os
 import logic
-import fast_2048
+import ai_2048
 
 # Disable
 def blockPrint():
@@ -23,7 +23,7 @@ for i in range(games_to_play):
     print(f"\nPlaying game {progress} / {games_to_play} ...")
 
     blockPrint()
-    result = fast_2048.main()
+    result = ai_2048.main()
     enablePrint()
 
 

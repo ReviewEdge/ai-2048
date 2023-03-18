@@ -18,12 +18,6 @@ def start_game():
     add_new_tile(mat)
     add_new_tile(mat)
 
-    print('Commands are as follows : ')
-    print("'W' or 'w' : Move Up")
-    print("'S' or 's' : Move Down")
-    print("'A' or 'a' : Move Left")
-    print("'D' or 'd' : Move Right")
-
     print(mat_to_string(mat))
 
     return mat
@@ -237,4 +231,13 @@ def move_down(grid, curr_scor):
 
 
 def mat_to_string(mat):
-    return f"{mat[0]}\n{mat[1]}\n{mat[2]}\n{mat[3]}"
+    # return f"{mat[0]}\n{mat[1]}\n{mat[2]}\n{mat[3]}"
+    out = ""
+
+    for i in range(4):
+        for j in range(4):
+            out = out + str(mat[i][j]) + "\t"
+        if i != 3:
+            out+="\n"
+
+    return out
