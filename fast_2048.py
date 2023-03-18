@@ -36,7 +36,7 @@ def main():
 
         if not x:
             print("GAME OVER!")
-            print(f"\n\n\nMove Count: {move_count}\tScore: {score}\n{logic.mat_to_string(mat)}")
+            print(f"\n\n\nTotal Moves: {move_count}\tFinal Score: {score}\n{logic.mat_to_string(mat)}")
             return score, False, mat
 
         # move up
