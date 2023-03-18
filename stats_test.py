@@ -17,8 +17,11 @@ def enablePrint():
 max = 0
 max_board = []
 min = 9999999999
-progress = 0
-for i in range(50):
+progress = 1
+games_to_play = 50
+for i in range(games_to_play):
+    print(f"\nPlaying game {progress} / {games_to_play} ...")
+
     blockPrint()
     result = fast_2048.main()
     enablePrint()
@@ -34,7 +37,6 @@ for i in range(50):
     progress+=1
 
     # if progress % 100 == 0:
-    print(f"\nGames Played: {progress}")
     print(logic.mat_to_string(max_board))
     print(f"High Score: {max}\nLow Score: {min}")
 
