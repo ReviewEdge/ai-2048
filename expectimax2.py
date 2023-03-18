@@ -15,13 +15,12 @@ def expectimax(node: pn.PuzzleNode, curr_depth, depth_limit):
         # results in a game over, so return a board goodness score of 0
         return (node.last_move, 0)
 
-    # if we're at the dl, return the score for the current node's board
+    # if we're at the depth limit, return the score for the current node's board
     elif curr_depth == depth_limit:
         return node.last_move, node.calc_board_goodness()
     
     # if it's player's turn, get the score of the best move
     elif computer_played_last:
-        # return the best move and its score
         best_move = None
         best_score = -1
         for c in frontier:
@@ -31,34 +30,33 @@ def expectimax(node: pn.PuzzleNode, curr_depth, depth_limit):
                 best_move = leaf_move
                 best_score = leaf_score
         
+        # return the best move and its score
         return (best_move, best_score)
     
     # if it's the computer's turn, get a weighted average score for child boards
     elif not computer_played_last:
         weighted_average = 0
         for c in frontier:
+            # 2s spawn with 90% prob., so weight with .9
             if c.last_move == pn.Move.TWO:
                 weight = .9
+            # 4s spawn with 10% prob., so weight with .1
             if c.last_move == pn.Move.FOUR:
                 weight = .1
-
             weighted_average += (weight * expectimax(c, curr_depth+1, depth_limit)[1])
-        return (node.last_move , weighted_average)
+        return (node.last_move, weighted_average)
     else:
         print("\n\n\nSomething went very wrong...")
         return
 
 
-
-
-
-# Play first move of a game
+# Play just first move of a game with depth limit of 3
 def one_move():
     first_node = pn.PuzzleNode(logic.start_game(), 1, pn.Move.TWO)
     print(expectimax(first_node, 0, 3))
 
 
-
+# get next move for a given board with depth limit of three
 def get_next_move(curr_board, score, last_tile):
     if last_tile == 2:
         last_move = pn.Move.TWO
@@ -70,7 +68,8 @@ def get_next_move(curr_board, score, last_tile):
     return expectimax(node, 0, 3)[0]
 
 
-
+# get next move
+# search deeper if there are more tiles on the board
 def get_next_move_vary_depth(curr_board, score, last_tile):
     dl = 2
     
