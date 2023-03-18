@@ -1,20 +1,17 @@
-# 2048 game
-# Contains the game loop, allows player to make moves and play game
+# Play 2048 via keyboard input
 
 import logic
-import random
-import expectimax as em
-import puzzle_world as pw
+import puzzle_node as pn
 
 
 def move_to_str(move):
-    if move == pw.Move.UP:
+    if move == pn.Move.UP:
         return "w"
-    if move == pw.Move.DOWN:
+    if move == pn.Move.DOWN:
         return "s"
-    if move == pw.Move.LEFT:
+    if move == pn.Move.LEFT:
         return "a"
-    if move == pw.Move.RIGHT:
+    if move == pn.Move.RIGHT:
         return "d"
     
 
