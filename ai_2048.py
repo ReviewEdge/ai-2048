@@ -18,6 +18,9 @@ def move_to_str(move):
     
 
 def main():
+    print("---2048---")
+    print("--- AI ---\n\n")
+
     mat = logic.start_game()
     move_count = 0
     score = 0
