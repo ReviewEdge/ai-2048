@@ -54,13 +54,13 @@ def get_valid_moves(mat):
     valid_moves = []
 
     # check if moving in each direction will change anything
-    if move_up(mat)[1]:
+    if move_up(mat, 0)[1]:
         valid_moves.append("w")
-    if move_left(mat)[1]:
+    if move_left(mat, 0)[1]:
         valid_moves.append("a")
-    if move_down(mat)[1]:
+    if move_down(mat, 0)[1]:
         valid_moves.append("s")
-    if move_right(mat)[1]:
+    if move_right(mat, 0)[1]:
         valid_moves.append("d")
     
     return valid_moves

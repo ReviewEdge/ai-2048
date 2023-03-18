@@ -6,6 +6,7 @@ import random
 import expectimax as em
 import puzzle_world as pw
 
+
 def move_to_str(move):
     if move == pw.Move.UP:
         return "w"
@@ -21,14 +22,6 @@ def move_to_str(move):
 def main():
     # call start_game function to initialize the matrix
     mat = logic.start_game()
-
-
-#     try_this_board = [[0, 4, 0, 0],
-# [2, 16, 4, 0],
-# [32, 4, 0, 0],
-# [4, 16, 8, 2]]
-    
-#     mat = try_this_board
 
     # game loop
     move_count = 0
@@ -47,39 +40,30 @@ def main():
 
         else:
 
-            # RANDOM AI:
+            # Play a random game:
             # x = valid_moves[random.randint(0, len(valid_moves)-1)]
 
-            # expectimax AI, prompts which move you should make, dl=3
-            # em.suggest_next_move(mat)
+            # Get user input for next move:
+            x = input("Move: ").lower()
 
-            # get user input for next move
-            # x = input("Move: ").lower()
-
-            # Auto playing varying depth expectimax AI:
-            x = move_to_str(em.get_next_move_vary_depth(mat, 2))
-            print(f"MOVE PICKED: {x}")
-
-
-
+ 
             if x not in valid_moves:
                 print("Invalid move")
             else:
                 # move up
                 if x == "w":
-                    mat, flag, si = logic.move_up(mat)
+                    mat, flag, score = logic.move_up(mat, score)
                 # move down
                 elif x == "s":
-                    mat, flag, si = logic.move_down(mat)
+                    mat, flag, score = logic.move_down(mat, score)
                 # move left
                 elif x == "a":
-                    mat, flag, si = logic.move_left(mat)
+                    mat, flag, score = logic.move_left(mat, score)
                 # move right
                 elif x == "d":
-                    mat, flag, si = logic.move_right(mat)
+                    mat, flag, score = logic.move_right(mat, score)
                 
                 move_count+=1
-                score += si
 
                 # add a new tile
                 logic.add_new_tile(mat)
