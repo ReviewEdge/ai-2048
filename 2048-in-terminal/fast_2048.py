@@ -20,7 +20,7 @@ def move_to_str(move):
 def main():
     mat = logic.start_game()
     move_count = 0
-    score = 1
+    score = 0
     last_tile = 2
     flag = True
 
