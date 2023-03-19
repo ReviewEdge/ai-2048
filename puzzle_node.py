@@ -20,8 +20,7 @@ class PuzzleNode:
         self.last_move = last_move
         self.children = []
 
-
-    #TODO: make this helpful
+    # get and set heuristic value for board
     def calc_board_goodness(self):
         self.board_goodness = self.score + 1
         return self.board_goodness
@@ -104,29 +103,28 @@ class PuzzleNode:
             for m in moves:
                 if m == Move.LEFT:
                     child_data = logic.move_left(self.board, self.score)
-                    # if it's a new board
+                    # if it's a new, valid board
                     if child_data[1]:
                         child = PuzzleNode(child_data[0], child_data[2], m)
                         self.children.append(child)
 
                 if m == Move.RIGHT:
                     child_data = logic.move_right(self.board, self.score)
-                    # if it's a new board
+                    # if it's a new, valid board
                     if child_data[1]:
                         child = PuzzleNode(child_data[0], child_data[2], m)
                         self.children.append(child)
 
                 if m == Move.UP:
-                    # print(self.board)
                     child_data = logic.move_up(self.board, self.score)
-                    # if it's a new board
+                    # if it's a new, valid board
                     if child_data[1]:
                         child = PuzzleNode(child_data[0], child_data[2], m)
                         self.children.append(child)
 
                 if m == Move.DOWN:
                     child_data = logic.move_down(self.board, self.score)
-                    # if it's a new board
+                    # if it's a new, valid board
                     if child_data[1]:
                         child = PuzzleNode(child_data[0], child_data[2], m)
                         self.children.append(child)
