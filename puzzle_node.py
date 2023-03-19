@@ -26,7 +26,7 @@ class PuzzleNode:
         self.board_goodness = self.score + 1
         return self.board_goodness
     
-
+     
     # counts how many empty tiles in a board
     def get_num_empty_tiles(self):
         all = 16
@@ -36,6 +36,64 @@ class PuzzleNode:
                     all-=1
         return all
 
+
+    def calc_board_goodness_empty(self):#hueristic of more empty cells
+        self.board_goodness =  PuzzleNode.get_num_empty_tiles(self)
+        return self.board_goodness
+    
+    def calc_board_monotonic(self):#hueristic of more left to right increase
+        mon= 8 # max possible 4 rows+4 col
+        n = len(self.board)
+        # check rows
+        for i in range(n):
+            if not all(self.board[i][j] <= self.board[i][j+1] for j in range(n-1)):
+                mon-=1
+        # check columns
+        for j in range(n):
+            if not all(self.board[i][j] <= self.board[i+1][j] for i in range(n-1)):
+                mon-=1
+        return mon
+
+    
+    def calc_board_monotonic2(self):#hueristic of all rows and colinc or decreasing
+        mon = 0
+        n = len(self.board)
+        # check rows
+        for i in range(n):
+            if all(self.board[i][j] >= self.board[i][j+1] for j in range(n-1)):
+                mon += 1
+            if all(self.board[i][j] <= self.board[i][j+1] for j in range(n-1)):
+                mon += 1
+        # check columns
+        for j in range(n):
+            if all(self.board[i][j] >= self.board[i+1][j] for i in range(n-1)):
+                mon += 1
+            if all(self.board[i][j] <= self.board[i+1][j] for i in range(n-1)):
+                mon += 1
+        return mon
+
+    def calc_board_monotonic3(self):#hueristic of snake pattern in rows and col
+        mon = 0
+        n = len(self.board)
+        # check rows
+        for i in range(n):
+            if i % 2 == 0:
+                if all(self.board[i][j] <= self.board[i][j+1] for j in range(n-1)):
+                    mon += 1
+            else:
+                if all(self.board[i][j] >= self.board[i][j+1] for j in range(n-1)):
+                    mon += 1
+        # check columns
+        for j in range(n):
+            if j % 2 == 0:
+                if all(self.board[i][j] >= self.board[i+1][j] for i in range(n-1)):
+                    mon += 1
+            else:
+                if all(self.board[i][j] >= self.board[i+1][j] for i in range(n-1)):
+                    mon += 1
+        return mon
+    
+   
 
     def spawn_children(self):
         # don't do anything if children already have been spawned

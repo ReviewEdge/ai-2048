@@ -4,6 +4,7 @@
 import logic
 import expectimax2 as em2
 import puzzle_node as pn
+import time
 
 
 def move_to_str(move):
@@ -20,6 +21,8 @@ def move_to_str(move):
 def main():
     print("---2048---")
     print("--- AI ---\n\n")
+    start = time.process_time()
+    lastmove = time.process_time()
 
     mat = logic.start_game()
     move_count = 0
@@ -29,7 +32,8 @@ def main():
 
     # game loop
     while True:
-        print(f"\nMove Count: {move_count}\tScore: {score}\n{logic.mat_to_string(mat)}")
+        print(f"\nMove Count: {move_count}\tScore: {score}\n{logic.mat_to_string(mat)}\nTime to Process Move: {time.process_time() -lastmove  } seconds\nElapsed Time: {time.process_time() - start} seconds")
+        lastmove = time.process_time()
 
         # Ask AI for next move
         next_move = em2.get_next_move_vary_depth(mat, score, last_tile)
