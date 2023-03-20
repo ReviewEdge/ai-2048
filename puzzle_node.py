@@ -77,7 +77,7 @@ class PuzzleNode:
         # check rows
         for i in range(n):
             if i % 2 == 0:
-                if all(self.board[i][j] <= self.board[i][j+1] for j in range(n-1)):
+                if all(self.board[i][j] >= self.board[i][j+1] for j in range(n-1)):
                     mon += 1
             else:
                 if all(self.board[i][j] >= self.board[i][j+1] for j in range(n-1)):
@@ -85,7 +85,7 @@ class PuzzleNode:
         # check columns
         for j in range(n):
             if j % 2 == 0:
-                if all(self.board[i][j] >= self.board[i+1][j] for i in range(n-1)):
+                if all(self.board[i][j] <= self.board[i+1][j] for i in range(n-1)):
                     mon += 1
             else:
                 if all(self.board[i][j] >= self.board[i+1][j] for i in range(n-1)):

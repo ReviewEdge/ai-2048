@@ -17,7 +17,7 @@ def expectimax(node: pn.PuzzleNode, curr_depth, depth_limit):
 
     # if we're at the depth limit, return the score for the current node's board
     elif curr_depth == depth_limit:
-        return node.last_move, node.calc_board_monotonic3()
+        return node.last_move, node.calc_board_monotonic2()
     
     # if it's player's turn, get the score of the best move
     elif computer_played_last:
@@ -88,8 +88,8 @@ def get_next_move_vary_depth(curr_board, score, last_tile):
 
     print(f"Search Depth: {dl}")
 
-    # return expectimax(node, 0, dl)[0]
-    return expectimax_parallel(node, 0, dl)[0]
+    return expectimax(node, 0, dl)[0]
+    #return expectimax_parallel(node, 0, dl)[0]
 
 
 
@@ -109,7 +109,7 @@ def expectimax_parallel(node: pn.PuzzleNode, curr_depth, depth_limit):
 
     # if we're at the dl, return the score for the current node's board
     elif curr_depth == depth_limit:
-        return node.last_move, node.calc_board_monotonic3()
+        return node.last_move, node.calc_board_monotonic()
     
     # if it's player's turn, get the score of the best move
     elif computer_played_last:
