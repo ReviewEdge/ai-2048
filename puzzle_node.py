@@ -20,7 +20,7 @@ class PuzzleNode:
         self.last_move = last_move
         self.children = []
 
-    # get and set heuristic value for board
+    # get and set heuristic value for board based on game score
     def calc_board_goodness(self):
         self.board_goodness = self.score + 1
         return self.board_goodness
@@ -36,11 +36,14 @@ class PuzzleNode:
         return all
 
 
-    def calc_board_goodness_empty(self):#hueristic of more empty cells
+    # hueristic of more empty cells
+    def calc_board_goodness_empty(self):
         self.board_goodness =  PuzzleNode.get_num_empty_tiles(self)
         return self.board_goodness
     
-    def calc_board_monotonic(self):#hueristic of more left to right increase
+
+    # hueristic of more left to right increase
+    def calc_board_monotonic(self):
         mon= 8 # max possible 4 rows+4 col
         n = len(self.board)
         # check rows
@@ -53,8 +56,9 @@ class PuzzleNode:
                 mon-=1
         return mon
 
-    
-    def calc_board_monotonic2(self):#hueristic of all rows and colinc or decreasing
+
+    # hueristic of all rows and columns or decreasing    
+    def calc_board_monotonic2(self):
         mon = 0
         n = len(self.board)
         # check rows
@@ -71,7 +75,9 @@ class PuzzleNode:
                 mon += 1
         return mon
 
-    def calc_board_monotonic3(self):#hueristic of snake pattern in rows and col
+
+    # hueristic of snake pattern in rows and col
+    def calc_board_monotonic3(self):
         mon = 0
         n = len(self.board)
         # check rows
@@ -93,7 +99,6 @@ class PuzzleNode:
         return mon
     
    
-
     def spawn_children(self):
         # don't do anything if children already have been spawned
         if len(self.children) > 0:
@@ -129,7 +134,6 @@ class PuzzleNode:
                         child = PuzzleNode(child_data[0], child_data[2], m)
                         self.children.append(child)
             
-
         # it's the computer's move (to spawn a tile)
         else:
             # check every cell in the board

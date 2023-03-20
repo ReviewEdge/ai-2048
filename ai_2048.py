@@ -32,7 +32,8 @@ def main():
 
     # game loop
     while True:
-        print(f"\nMove Count: {move_count}\tScore: {score}\n{logic.mat_to_string(mat)}\nTime to Process Move: {time.process_time() -lastmove  } seconds\nElapsed Time: {time.process_time() - start} seconds")
+        print(f"Time to Process Move: {time.process_time() -lastmove  } seconds")
+        print(f"\nMove Count: {move_count}\tScore: {score}\n{logic.mat_to_string(mat)}\nTotal Elapsed Time: {time.process_time() - start} seconds")
         lastmove = time.process_time()
 
         # Ask AI for next move
@@ -60,9 +61,9 @@ def main():
             mat, flag, score = logic.move_right(mat, score)
 
         if not flag:
-            print(mat)
-            print("GAME OVER")
-            break
+            print("GAME OVER!")
+            print(f"\n\n\nTotal Moves: {move_count}\tFinal Score: {score}\n{logic.mat_to_string(mat)}")
+            return score, False, mat
 
         move_count+=1
 
