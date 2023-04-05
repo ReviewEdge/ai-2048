@@ -1,5 +1,5 @@
 # ai-2048
-an AI to solve 2048
+An AI to solve 2048. Implements Expectimax.
 
 # Running Code
 - To watch AI play a game, launch dist/ai_2048.exe
